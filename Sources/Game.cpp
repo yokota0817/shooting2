@@ -22,8 +22,8 @@ int     score;          //!< スコア
 void Start()
 {
     cloudPos = Vector2(-320, 100);
-    cannonPos = Vector2(-80, -150);
-    targetRect = Rect(80, -140, 40, 40);
+    cannonPos = Vector2(-200, -150);
+    targetRect = Rect(200, -140, 40, 40);
     bulletPos.x = -999;
     score = 0;
 }
