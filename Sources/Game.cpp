@@ -26,6 +26,8 @@ void Start()
     targetRect = Rect(200, -140, 40, 40);
     bulletPos.x = -999;
     score = 0;
+    
+    PlayBGM("se_maoudamashii_system43.mp3");
 }
 
 // 1/60秒ごとに呼ばれる関数です。モデルの更新と画面の描画を行います。
@@ -34,17 +36,24 @@ void Update()
     // 弾の発射
     if (bulletPos.x <= -999 && Input::GetKeyDown(KeyMask::Space)) {
         bulletPos = cannonPos + Vector2(50, 10);
+        
+        PlaySound("se_maoudamashii_system43.mp3");
     }
 
     // 弾の移動
     if (bulletPos.x > -999) {
-        bulletPos.x += 10 * Time::deltaTime;
+        bulletPos.x += 300 * Time::deltaTime;
 
         // ターゲットと弾の当たり判定
         Rect bulletRect(bulletPos, Vector2(32, 20));
         if (targetRect.Overlaps(bulletRect)) {
-            score += 1;         // スコアの加算
+            score += 100;         // スコアの加算
             bulletPos.x = -999; // 弾を発射可能な状態に戻す
+            
+            PlaySound("se_maoudamashii_explosion06.mp3");
+        }
+        if (bulletPos.x >= 320){
+            bulletPos.x = -999;
         }
     }
 
@@ -68,8 +77,20 @@ void Update()
     FillRect(targetRect, Color::red);
 
     // スコアの描画
+<<<<<<< HEAD
+<<<<<<< HEAD
     SetFont("nicoca_v1.ttf", 50.0f);
     DrawText(FormatString("%02d", score), Vector2(-319, 199), Color::black);
     DrawText(FormatString("%02d", score), Vector2(-320, 200), Color::white);
+=======
+    SetFont("nicoca_v1.ttf", 20.0f);
+    DrawText(FormatString("%05d", score), Vector2(-319, 199), Color::black);
+    DrawText(FormatString("%05d", score), Vector2(-320, 200), Color::white);
+>>>>>>> a5be44c270a5f03409d3ed92202532161706586f
+=======
+    SetFont("nicoca_v1.ttf", 20.0f);
+    DrawText(FormatString("%05d", score), Vector2(-319, 199), Color::black);
+    DrawText(FormatString("%05d", score), Vector2(-320, 200), Color::white);
+>>>>>>> a5be44c270a5f03409d3ed92202532161706586f
 }
 
