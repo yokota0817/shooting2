@@ -54,7 +54,14 @@ void Update()
 
     // 雲の描画
     DrawImage("cloud1.png", cloudPos);
-
+    if (cloudPos.x > -551) {
+        cloudPos.x += 50 * Time::deltaTime;
+        
+        if(cloudPos.x > 350) {
+            cloudPos = Vector2(-550, 100);
+        }
+    }
+    
     // 弾の描画
     if (bulletPos.x > -999) {
         DrawImage("bullet.png", bulletPos);
