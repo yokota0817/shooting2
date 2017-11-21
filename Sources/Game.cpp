@@ -79,6 +79,18 @@ void Update()
     // 砲台の描画
     FillRect(Rect(cannonPos.x-10, -140, 20, 100), Color::blue);
     DrawImage("cannon.png", cannonPos);
+    if (cannonPos.y > -60){
+        c = 1;
+    }
+    if (cannonPos.y < -160){
+        c = 0;
+    }
+    if(c == 0){
+        cannonPos.y += 20 * Time::deltaTime;
+    }
+    if (c == 1){
+        cannonPos.y -= 20 * Time::deltaTime;
+    }
 
     // ターゲットの描画
     FillRect(targetRect, Color::red);
